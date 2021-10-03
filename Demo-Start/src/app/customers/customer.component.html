@@ -16,8 +16,6 @@
                  id="firstNameId"
                  type="text"
                  placeholder="First Name (required)"
-                 required
-                 minlength="3"
                  formControlName="firstName"
                  [ngClass]="{'is-invalid': (customerFormModel.get('firstName').touched || customerFormModel.get('firstName').dirty) && !customerFormModel.get('firstName').valid }" />
 
@@ -41,8 +39,6 @@
                  id="lastNameId"
                  type="text"
                  placeholder="Last Name (required)"
-                 required
-                 maxlength="50"
                  formControlName="lastName"
                  [ngClass]="{'is-invalid': (customerFormModel.get('lastName').touched || customerFormModel.get('lastName').dirty) && !customerFormModel.get('lastName').valid }" />
 
@@ -66,8 +62,6 @@
                  id="emailId"
                  type="email"
                  placeholder="Email (required)"
-                 required
-                 email
                  formControlName="email"
                  [ngClass]="{'is-invalid': (customerFormModel.get('email').touched || customerFormModel.get('email').dirty) && !customerFormModel.get('email').valid }" />
 
@@ -214,7 +208,7 @@
           <button class="btn btn-outline-secondary"
                   type="button"
                   (click)="populateTestData()">
-                  Test FormModel setValue
+            Test FormModel setValue
           </button>
         </div>
       </div>
