@@ -66,6 +66,11 @@ export class CustomerComponent implements OnInit {
       lastName: ":)",
       sendCatalog: false
     });
+
+    this.customerFormModel.get("emailGroup").patchValue({
+      email: "test@test",
+      confirmEmail: "test@test"
+    });
   }
 
   setNotification(notifyVia: string): void {
