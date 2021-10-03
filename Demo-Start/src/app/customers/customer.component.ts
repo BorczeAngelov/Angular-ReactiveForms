@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
+import { debounceTime } from 'rxjs/operators'
+
 import { Customer } from './customer';
 
 function ratingRange(min: number, max: number): ValidatorFn {
@@ -65,10 +67,14 @@ export class CustomerComponent implements OnInit {
       value => this.setNotification(value)
     );
 
-    const emailControl= this.customerFormModel.get('emailGroup.email');
-    emailControl.valueChanges.subscribe(
-      value => this.setMessage(emailControl)
-    );
+    const emailControl = this.customerFormModel.get('emailGroup.email');
+    emailControl.valueChanges
+      .pipe(
+        debounceTime(1000)
+      )
+      .subscribe(
+        value => this.setMessage(emailControl)
+      );
   }
 
   save(): void {
