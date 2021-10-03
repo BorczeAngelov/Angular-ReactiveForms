@@ -41,6 +41,7 @@ export class CustomerComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+
     this.customerFormModel = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
@@ -53,6 +54,10 @@ export class CustomerComponent implements OnInit {
       rating: [null, ratingRange(1, 5)],
       sendCatalog: true
     });
+
+    this.customerFormModel.get('notification').valueChanges.subscribe(
+      value => this.setNotification(value)
+    );
   }
 
   save(): void {
