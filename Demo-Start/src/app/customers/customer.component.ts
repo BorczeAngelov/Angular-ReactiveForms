@@ -1,7 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Customer } from './customer';
+
+function ratingRange(c: AbstractControl): { [key: string]: boolean } | null {
+
+  if (c.valid != null && (isNaN(c.value) || c.value < 1 || c.value > 5)) {
+    return { 'range': true };
+  }
+  return null;
+  // const emailControl = c.get('email');
+  // const confirmControl = c.get('confirmEmail');
+
+  // if (emailControl.pristine || confirmControl.pristine) {
+  //   return null;
+  // }
+
+  // if (emailControl.value === confirmControl.value) {
+  //   return null;
+  // }
+  // return { match: true };
+}
+
 
 @Component({
   selector: 'app-customer',
@@ -21,6 +41,7 @@ export class CustomerComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: "",
       notification: 'email',
+      rating: [null, ratingRange],
       sendCatalog: true
     });
   }
