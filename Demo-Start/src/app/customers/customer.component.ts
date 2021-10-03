@@ -53,20 +53,25 @@ export class CustomerComponent implements OnInit {
     this.customerFormModel = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
+
       emailGroup: this.fb.group({
         email: ['', [Validators.required, Validators.email]],
         confirmEmail: ['', [Validators.required]],
       }, { validator: emailMatcher }),
+
       phone: "",
       notification: 'email',
       rating: [null, ratingRange(1, 5)],
       sendCatalog: true,
-      addressType: 'home',
-      street1: '',
-      street2: '',
-      city: '',
-      state: '',
-      zip: ''
+
+      addresses: this.fb.group({        
+        addressType: 'home',
+        street1: '',
+        street2: '',
+        city: '',
+        state: '',
+        zip: ''
+      })
     });
 
     this.customerFormModel.get('notification').valueChanges.subscribe(
