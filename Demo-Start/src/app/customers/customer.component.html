@@ -54,27 +54,55 @@
         </div>
       </div>
 
-      <div class="form-group row mb-2">
-        <label class="col-md-2 col-form-label"
-               for="emailId">Email</label>
-        <div class="col-md-8">
-          <input class="form-control"
-                 id="emailId"
-                 type="email"
-                 placeholder="Email (required)"
-                 formControlName="email"
-                 [ngClass]="{'is-invalid': (customerFormModel.get('email').touched || customerFormModel.get('email').dirty) && !customerFormModel.get('email').valid }" />
+      <div formGroupName="emailGroup">
 
-          <span class="invalid-feedback">
-            <span *ngIf="customerFormModel.get('email').errors?.required">
-              Please enter your email address.
-            </span>
-            <span *ngIf="customerFormModel.get('email').errors?.email">
-              Please enter a valid email address.
-            </span>
-          </span>
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="emailId">Email</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="emailId"
+                   type="email"
+                   placeholder="Email (required)"
+                   formControlName="email"
+                   [ngClass]="{'is-invalid': (
+                     customerFormModel.get('emailGroup.email').touched || 
+                     customerFormModel.get('emailGroup.email').dirty) && 
+                     !customerFormModel.get('emailGroup.email').valid }" />
 
+            <span class="invalid-feedback">
+              <span *ngIf="customerFormModel.get('emailGroup.email').errors?.required">
+                Please enter your email address.
+              </span>
+              <span *ngIf="customerFormModel.get('emailGroup.email').errors?.email">
+                Please enter a valid email address.
+              </span>
+            </span>
+
+          </div>
         </div>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="confirmEmailId">Confirm Email</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="confirmEmailId"
+                   type="email"
+                   placeholder="Confirm Email (required)"
+                   formControlName="confirmEmail"
+                   [ngClass]="{'is-invalid': ((
+                   customerFormModel.get('emailGroup.confirmEmail').touched || 
+                   customerFormModel.get('emailGroup.confirmEmail').dirty) && 
+                   !customerFormModel.get('emailGroup.confirmEmail').valid) }" />
+            <span class="invalid-feedback">
+              <span *ngIf="customerFormModel.get('emailGroup.confirmEmail').errors?.required">
+                Please confirm your email address.
+              </span>
+            </span>
+          </div>
+        </div>
+
       </div>
 
       <div class="form-group row mb-2">
