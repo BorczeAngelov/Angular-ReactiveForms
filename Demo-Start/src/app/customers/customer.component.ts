@@ -9,7 +9,7 @@ import { Customer } from './customer';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  customerFormModel: FormGroup; 
+  customerFormModel: FormGroup;
   customer = new Customer(); //dataModel
 
   constructor() { }
@@ -26,5 +26,13 @@ export class CustomerComponent implements OnInit {
   save(): void {
     console.log(this.customerFormModel);
     console.log('Saved: ' + JSON.stringify(this.customerFormModel.value));
+  }
+
+  populateTestData(): void {
+    this.customerFormModel.patchValue({
+      firstName: "Borcze",
+      lastName: ":)",
+      sendCatalog: false
+    });
   }
 }

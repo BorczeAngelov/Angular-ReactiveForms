@@ -96,7 +96,7 @@
           </div>
         </div>
       </div>
-<!-- 
+      <!-- 
       <div *ngIf="customer.sendCatalog">
         <div class="form-group row mb-2">
           <label class="col-md-2 col-form-label pt-0">Address Type</label>
@@ -209,6 +209,12 @@
                   [title]="customerFormModel.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
                   [disabled]="!customerFormModel.valid">
             Save
+          </button>
+
+          <button class="btn btn-outline-secondary"
+                  type="button"
+                  (click)="populateTestData()">
+                  Test FormModel setValue
           </button>
         </div>
       </div>
