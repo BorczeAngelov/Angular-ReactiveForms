@@ -65,10 +65,10 @@
                    type="email"
                    placeholder="Email (required)"
                    formControlName="email"
-                   [ngClass]="{'is-invalid': (
+                   [ngClass]="{'is-invalid': (customerFormModel.get('emailGroup').errors || (
                      customerFormModel.get('emailGroup.email').touched || 
                      customerFormModel.get('emailGroup.email').dirty) && 
-                     !customerFormModel.get('emailGroup.email').valid }" />
+                     !customerFormModel.get('emailGroup.email').valid) }" />
 
             <span class="invalid-feedback">
               <span *ngIf="customerFormModel.get('emailGroup.email').errors?.required">
@@ -91,13 +91,17 @@
                    type="email"
                    placeholder="Confirm Email (required)"
                    formControlName="confirmEmail"
-                   [ngClass]="{'is-invalid': ((
-                   customerFormModel.get('emailGroup.confirmEmail').touched || 
+                   [ngClass]="{'is-invalid': customerFormModel.get('emailGroup').errors || 
+                   ((customerFormModel.get('emailGroup.confirmEmail').touched || 
                    customerFormModel.get('emailGroup.confirmEmail').dirty) && 
                    !customerFormModel.get('emailGroup.confirmEmail').valid) }" />
             <span class="invalid-feedback">
               <span *ngIf="customerFormModel.get('emailGroup.confirmEmail').errors?.required">
                 Please confirm your email address.
+              </span>
+
+              <span *ngIf="customerFormModel.get('emailGroup').errors?.match">
+                The confirmation does not match the emall address :(
               </span>
             </span>
           </div>
